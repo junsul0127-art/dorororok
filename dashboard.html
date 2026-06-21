@@ -494,11 +494,10 @@ async function submitAdd() {
     assigned_to: document.getElementById('a-assigned').value,
     status: cols[0] || '신규',
   });
-  if (!error) {
-    closeAdd();
-    ['a-customer','a-contact-name','a-contact-info','a-summary','a-assigned'].forEach(id => document.getElementById(id).value = '');
-    loadData(); showToast('등록됐어요');
-  }
+  if (error) { console.error(error); alert('등록 오류: ' + error.message); return; }
+  closeAdd();
+  ['a-customer','a-contact-name','a-contact-info','a-summary','a-assigned'].forEach(id => document.getElementById(id).value = '');
+  loadData(); showToast('등록됐어요');
 }
 
 /* ── Settings Modal ── */
